@@ -20,5 +20,6 @@ alias lt='ls --tree'
 alias ld='lazydocker'
 alias lg='lazygit'
 alias ya='yazi'
+alias ch='chezmoi'
 
 eval "$(starship init zsh)"

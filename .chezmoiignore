@@ -1,0 +1,9 @@
+# 忽略整个 ~/.config/chezmoi 目录及子文件
+.config/chezmoi/
+.config/chezmoi/**
+
+# 忽略整个 ~/.config/raycast 目录及子文件
+.config/raycast/
+.config/raycast/**
+
+DS_Store
