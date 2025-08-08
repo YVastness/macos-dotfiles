@@ -1,0 +1,5 @@
+[plugins]
+metadata = true
+zoxide = true
+editor = "nvim"
+dir_editor = "yy"
