@@ -1,0 +1,45 @@
+2026-03-04 20:58:09.194
+Operating System: Darwin 25.3.0 Darwin Kernel Version 25.3.0: Wed Jan 28 20:49:24 PST 2026; root:xnu-12377.81.4~5/RELEASE_ARM64_T8132
+OS/Process: arm64/arm64
+Emby Server version: 4.9.3.0
+Operating system: Unix 26.3.0
+Command Line: /Applications/EmbyServer.app/Contents/MacOS/EmbyServer.dll
+
+App: Emby Web 4.9.3.0
+Chrome macOS
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+
+http://‌‍‍192.168.3.162‌:8096/emby/videos/3625/main.m3u8?DeviceId=72360333-9e7e-4edf-922b-4cc9f5fb43bb&MediaSourceId=mediasource_3625&PlaySessionId=03b6c54123f9426e80b6c43fc423a5a2&api_key=‌66549f81c62548dd89e3390e87f05eef‌&VideoCodec=hevc,h264,av1&AudioCodec=mp3,aac&VideoBitrate=199823306&AudioBitrate=176694&AudioStreamIndex=1&TranscodingMaxAudioChannels=2&SegmentContainer=ts&MinSegments=1&BreakOnNonKeyFrames=True&SubtitleStreamIndexes=-1&ManifestSubtitles=vtt&h264-profile=high,main,baseline,constrainedbaseline,high10&h264-level=62&hevc-codectag=hvc1,hev1,hevc,hdmv&TranscodeReasons=DirectPlayError
+
+http://‌‍‍192.168.3.162‌:8096/emby/videos/3625/hls1/main/0.ts?PlaySessionId=03b6c54123f9426e80b6c43fc423a5a2
+
+{"Chapters":[],"Protocol":"File","Id":"mediasource_3625","Path":"/Volumes/HDD/Videos/Girls/JAV_output/三岳优奈,結月りあ,美波汐里/V (3)/V (3).mp4","Type":"Default","Container":"mp4","Size":1322044397,"Name":"V (3) 常夏沖縄でなんだか開放的な気分！！水着のままでOK！！Vラインギリギリマッサージで困惑！？3","IsRemote":false,"HasMixedProtocols":false,"RunTimeTicks":2866740000,"SupportsTranscoding":true,"SupportsDirectStream":true,"SupportsDirectPlay":true,"IsInfiniteStream":false,"RequiresOpening":false,"RequiresClosing":false,"RequiresLooping":false,"SupportsProbing":true,"MediaStreams":[{"Codec":"h264","CodecTag":"avc1","Language":"und","ColorTransfer":"bt709","ColorPrimaries":"bt709","ColorSpace":"bt709","TimeBase":"1/15360","VideoRange":"SDR","DisplayTitle":"4K H264","NalLengthSize":"4","IsInterlaced":false,"BitRate":36713448,"BitDepth":8,"RefFrames":1,"IsDefault":true,"IsForced":false,"IsHearingImpaired":false,"Height":3840,"Width":2160,"AverageFrameRate":30,"RealFrameRate":30,"Profile":"Main","Type":"Video","AspectRatio":"9:16","Index":0,"IsExternal":false,"IsTextSubtitleStream":false,"SupportsExternalStream":false,"Protocol":"File","PixelFormat":"yuv420p","Level":51,"IsAnamorphic":false,"ExtendedVideoType":"None","ExtendedVideoSubType":"None","ExtendedVideoSubTypeDescription":"None","AttachmentSize":0},{"Codec":"aac","CodecTag":"mp4a","Language":"und","TimeBase":"1/44100","DisplayTitle":"AAC stereo (默认)","IsInterlaced":false,"ChannelLayout":"stereo","BitRate":176694,"Channels":2,"SampleRate":44100,"IsDefault":true,"IsForced":false,"IsHearingImpaired":false,"Profile":"LC","Type":"Audio","Index":1,"IsExternal":false,"IsTextSubtitleStream":false,"SupportsExternalStream":false,"Protocol":"File","ExtendedVideoType":"None","ExtendedVideoSubType":"None","ExtendedVideoSubTypeDescription":"None","AttachmentSize":0}],"Formats":[],"Bitrate":36893318,"RequiredHttpHeaders":{},"AddApiKeyToDirectStreamUrl":false,"ReadAtNativeFramerate":false,"ItemId":"3625"}
+
+>>>>>>  User policy for yinhaoyu
+        Enable Playback Remuxing: True
+        Enable Video Playback Transcoding: True
+        Enable Audio Playback Transcoding: True
+
+
+>>>>>>  Processing Plan
+        Name                                        CanDoInHW  WillDoInHW  Reason                                                 
+        Copy video stream                        >> False      False       Software Codec                                          
+        VideoInput                               >> False      False       Not a hardware decoder                                  
+        VideoOutput                              >> False      False       Not a hardware encoder                                  
+        Copy video stream                        >> False      False       Software Codec                                          
+
+>>>>>>  Video Processing Steps for [0:0]: H.264 (AVC)
+        Step                    HW-Context   Format       SW-Format           Size   Next
+        H264                 >> -            yuv420p      yuv420p        2160x3840 >> 
+
+/Applications/EmbyServer.app/Contents/MacOS/ffmpeg -loglevel +timing -y -print_graphs_file "/Users/yinhaoyu/.config/emby-server/logs/ffmpeg-directstream-2af748fc-4d5d-41d1-8a58-08bd72b926f6_1graph.txt" -copyts -start_at_zero -f mp4 -noaccurate_seek -c:v:0 h264 -noautorotate -i "/Volumes/HDD/Videos/Girls/JAV_output/三岳优奈,結月りあ,美波汐里/V (3)/V (3).mp4" -map 0:0 -map 0:1 -sn -c:v:0 copy -bsf:v:0 h264_mp4toannexb -c:a:0 copy -disposition:a:0 default -copypriorss:a:0 0 -max_delay 5000000 -avoid_negative_ts disabled -f segment -map_metadata -1 -map_chapters -1 -segment_format mpegts -segment_list "/Users/yinhaoyu/.config/emby-server/transcoding-temp/279EE5/279EE5.m3u8" -segment_list_type m3u8 -segment_time 00:00:06.000 -segment_start_number 0 -break_non_keyframes 1 -individual_header_trailer 0 -write_header_trailer 0 -segment_write_temp 1 "/Users/yinhaoyu/.config/emby-server/transcoding-temp/279EE5/279EE5_%d.ts"
+
+20:58:09.335 ffmpeg version 5.1-emby_2023_06_25_p4 Copyright (c) 2000-2022 the FFmpeg developers and softworkz for Emby LLC
+20:58:09.336   built with clang version 18.1.8
+20:58:09.336 Execution Date: 2026-03-04 20:58:09
+20:58:09.337 /Volumes/HDD/Videos/Girls/JAV_output/三岳优奈,結月りあ,美波汐里/V (3)/V (3).mp4: No such file or directory
+20:58:09.338 EXIT
+
+======= ExtraData
+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
+---

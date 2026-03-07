@@ -1,0 +1,32 @@
+2026-03-05 16:14:17.758
+Operating System: Darwin 25.3.0 Darwin Kernel Version 25.3.0: Wed Jan 28 20:49:24 PST 2026; root:xnu-12377.81.4~5/RELEASE_ARM64_T8132
+OS/Process: arm64/arm64
+Emby Server version: 4.9.3.0
+Operating system: Unix 26.3.0
+Command Line: /Applications/EmbyServer.app/Contents/MacOS/EmbyServer.dll
+
+App: Emby Web 4.9.3.0
+Chrome macOS
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+
+http://‌‍‍192.168.3.162‌:8096/emby/videos/3846/live.m3u8?DeviceId=72360333-9e7e-4edf-922b-4cc9f5fb43bb&MediaSourceId=mediasource_3846&PlaySessionId=2326f77111204861b1e13b2c91e9407d&api_key=‌66549f81c62548dd89e3390e87f05eef‌&VideoCodec=hevc,h264,av1&VideoBitrate=200000000&TranscodingMaxAudioChannels=2&SegmentContainer=ts&MinSegments=1&BreakOnNonKeyFrames=True&SubtitleStreamIndexes=-1&ManifestSubtitles=vtt&h264-profile=high,main,baseline,constrainedbaseline,high10&h264-level=62&hevc-codectag=hvc1,hev1,hevc,hdmv&TranscodeReasons=VideoCodecNotSupported,DirectPlayError&allowVideoStreamCopy=false
+
+{"Chapters":[],"Protocol":"File","Id":"mediasource_3846","Path":"/Volumes/HDD/Videos/Animes/剑来 (2024)/Season 2/剑来 - S02E13 - 第13集.mp4","Type":"Default","Container":"mp4","Size":0,"Name":"剑来 - S02E13 - 第13集","IsRemote":false,"HasMixedProtocols":false,"SupportsTranscoding":true,"SupportsDirectStream":true,"SupportsDirectPlay":true,"IsInfiniteStream":false,"RequiresOpening":false,"RequiresClosing":false,"RequiresLooping":false,"SupportsProbing":true,"MediaStreams":[],"Formats":[],"RequiredHttpHeaders":{},"AddApiKeyToDirectStreamUrl":false,"ReadAtNativeFramerate":false,"ItemId":"3846"}
+
+>>>>>>  User policy for yinhaoyu
+        Enable Playback Remuxing: True
+        Enable Video Playback Transcoding: True
+        Enable Audio Playback Transcoding: True
+
+/Applications/EmbyServer.app/Contents/MacOS/ffmpeg -loglevel +timing -y -print_graphs_file "/Users/yinhaoyu/.config/emby-server/logs/ffmpeg-transcode-49839fe5-6e1b-4e68-9f63-9fc639fcdaa7_1graph.txt" -copyts -start_at_zero -f mp4 -i "/Volumes/HDD/Videos/Animes/剑来 (2024)/Season 2/剑来 - S02E13 - 第13集.mp4" -vn -an -sn -max_delay 5000000 -avoid_negative_ts disabled -f segment -map_metadata -1 -map_chapters -1 -segment_format mpegts -segment_list "/Users/yinhaoyu/.config/emby-server/transcoding-temp/664284/664284.m3u8" -segment_list_type m3u8 -segment_time 00:00:03.000 -segment_list_entry_prefix hls/664284/ -segment_start_number 0 -individual_header_trailer 0 -write_header_trailer 0 -segment_write_temp 1 "/Users/yinhaoyu/.config/emby-server/transcoding-temp/664284/664284_%d.ts"
+
+16:14:17.900 ffmpeg version 5.1-emby_2023_06_25_p4 Copyright (c) 2000-2022 the FFmpeg developers and softworkz for Emby LLC
+16:14:17.901   built with clang version 18.1.8
+16:14:17.901 Execution Date: 2026-03-05 16:14:17
+16:14:17.902 [mov,mp4,m4a,3gp,3g2,mj2 @ 0x124f07490] moov atom not found
+16:14:17.902 /Volumes/HDD/Videos/Animes/剑来 (2024)/Season 2/剑来 - S02E13 - 第13集.mp4: Invalid data found when processing input
+16:14:17.903 EXIT
+
+======= ExtraData
+H4sIAAAAAAAAE7VWS2vbQBD+K0FQaEGy/Kqb5BbiPEyIU8ijhxLEWBrJ2+5D7K4cu8HXQo89lx57y99qS/9Fd/WI7SjGCaUBx+uZ75sZfbszq1tnXzAGPHJ2b51DQjVKtbJ8fz13nSMqRkDPUk0Ez93F8gpohhZz6wyBobPrzBzXya3nWhKeGIuWGTpz9x6RGrsOEgnpWAUxoVhj+JfKZPZnhI9BzDK/EQoek8RHNpp5xjVB6VORKD+OWYqJpyVwFYoIve7OdmcnxtdeD1sjr4u9bW8n7nXMv7BnHGEE8CZo5bkbeqqXywpFOtNqY/VKg9QB6OATSrEGbQUb8DTThTJ9ZNkUZS4qgs4klrGYmLgs7bqsC24nSc2n7bIPbRO1xF3MUourArjO+g24nldJBzzCqbPbLH++lUKLUNB6+lL71VyrnI0Zn3Ai4ppK5pkLkYwFgRXogdrLtOij3UejVQxUoeucYkTghNjT6VyRCMWGktwCVQS2iH0TLiwruRyeDM/eDZ0SlLusmX/k4oYb88FUo1Evyt2lIEPB8aHrPBvpFe9ADbjpFgohRve1LzaiKKcMWD3GQPUxhozqBUEdCrkSQR0jWNEGLAUilzx7lF5Akj+zhdnqJAda+uf2wD4Q1B7NVT33sohs1jNHbdIzB9X1XKNAlfi/KmCsl5LaaXIlaMZQ+cf9vp+Lr/w9Tqzl55evv77/2HrZbra7r/xzBCX4Vrsye1vnzfZBq2MWv+/uWp0/3z43iqNrNMv0fX+fPt7dChOGXNc67HRjLy+GTREiiIVkoB/pI0xMDcvTqSRQourwp4zVapQahqeRpX6v121vd8uvButk2+vyBXlL1Gpcw9BmA2rgztrYZiFnQSoxJtMabUxVVedjAYqRzTM2ynVf5TaXGaYvyIREGdBgjGDaJjB6mClZp+WHbJl6I4nGZ7OqEgu2FXztlfK0YctgGkRIoX4Nv27mf8vZYSJIFHBMQJOJSV+//SKiYERN1y2x6vO8OulLIAZpwFBDBBpqeK/1EBqOIc3fNh6D2ilU9Nsz77IHpI2X2eI6WgyPf+6Z4EXUsE1qn6J4pzrKX31sEdXKpv8LYvV46YgJAAA=
+---

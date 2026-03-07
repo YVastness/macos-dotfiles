@@ -1,0 +1,17 @@
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[user]
+	name = yinhaoyu
+	email = 1916286435@qq.com
+  # 配置 git 自动使用 (添加到 ~/.gitconfig)
+[core]
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true    # 允许使用 n/N 跳转差异块
+    line-numbers = true # 显示行号
+    side-by-side = true # 开启左右分栏

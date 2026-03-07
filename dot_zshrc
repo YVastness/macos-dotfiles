@@ -22,5 +22,8 @@ alias lg='lazygit'
 alias ya='yazi'
 alias ch='chezmoi'
 alias cat='bat'
+alias vi='nvim'
+alias cd='z'
 
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"

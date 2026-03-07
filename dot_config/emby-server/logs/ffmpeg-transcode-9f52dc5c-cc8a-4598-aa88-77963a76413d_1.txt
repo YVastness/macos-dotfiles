@@ -1,0 +1,62 @@
+2026-03-04 20:58:06.775
+Operating System: Darwin 25.3.0 Darwin Kernel Version 25.3.0: Wed Jan 28 20:49:24 PST 2026; root:xnu-12377.81.4~5/RELEASE_ARM64_T8132
+OS/Process: arm64/arm64
+Emby Server version: 4.9.3.0
+Operating system: Unix 26.3.0
+Command Line: /Applications/EmbyServer.app/Contents/MacOS/EmbyServer.dll
+
+App: Emby Web 4.9.3.0
+Chrome macOS
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+
+http://‌‍‍192.168.3.162‌:8096/emby/videos/3613/main.m3u8?DeviceId=72360333-9e7e-4edf-922b-4cc9f5fb43bb&MediaSourceId=mediasource_3613&PlaySessionId=7414b04c3256425886226e3ddda6b373&api_key=‌66549f81c62548dd89e3390e87f05eef‌&VideoCodec=hevc,h264,av1&AudioCodec=mp3,aac&VideoBitrate=199783065&AudioBitrate=216935&AudioStreamIndex=1&TranscodingMaxAudioChannels=2&SegmentContainer=ts&MinSegments=1&BreakOnNonKeyFrames=True&SubtitleStreamIndexes=-1&ManifestSubtitles=vtt&h264-profile=high,main,baseline,constrainedbaseline,high10&h264-level=62&hevc-codectag=hvc1,hev1,hevc,hdmv&TranscodeReasons=DirectPlayError&allowVideoStreamCopy=false&allowAudioStreamCopy=false
+
+http://‌‍‍192.168.3.162‌:8096/emby/videos/3613/hls1/main/0.ts?PlaySessionId=7414b04c3256425886226e3ddda6b373
+
+{"Chapters":[],"Protocol":"File","Id":"mediasource_3613","Path":"/Volumes/HDD/Videos/Girls/JAV_output/未知演员/V (4)/V (4).mp4","Type":"Default","Container":"mp4","Size":2223441512,"Name":"V (4) 【独占配信】変態課長が行く！所有されたい願望の超マゾ女  「出します、塗ってください、私は貴方のもの…」 SM倶楽部 Venus（ヴィーナス） ひな","IsRemote":false,"HasMixedProtocols":false,"RunTimeTicks":4806070000,"SupportsTranscoding":true,"SupportsDirectStream":true,"SupportsDirectPlay":true,"IsInfiniteStream":false,"RequiresOpening":false,"RequiresClosing":false,"RequiresLooping":false,"SupportsProbing":true,"MediaStreams":[{"Codec":"h264","CodecTag":"avc1","Language":"und","ColorTransfer":"bt709","ColorPrimaries":"bt709","ColorSpace":"bt709","TimeBase":"1/15360","VideoRange":"SDR","DisplayTitle":"4K H264","NalLengthSize":"4","IsInterlaced":false,"BitRate":36790061,"BitDepth":8,"RefFrames":1,"IsDefault":true,"IsForced":false,"IsHearingImpaired":false,"Height":2160,"Width":3840,"AverageFrameRate":30,"RealFrameRate":30,"Profile":"Main","Type":"Video","AspectRatio":"16:9","Index":0,"IsExternal":false,"IsTextSubtitleStream":false,"SupportsExternalStream":false,"Protocol":"File","PixelFormat":"yuv420p","Level":51,"IsAnamorphic":false,"ExtendedVideoType":"None","ExtendedVideoSubType":"None","ExtendedVideoSubTypeDescription":"None","AttachmentSize":0},{"Codec":"aac","CodecTag":"mp4a","Language":"und","TimeBase":"1/44100","DisplayTitle":"AAC stereo (默认)","IsInterlaced":false,"ChannelLayout":"stereo","BitRate":216935,"Channels":2,"SampleRate":44100,"IsDefault":true,"IsForced":false,"IsHearingImpaired":false,"Profile":"LC","Type":"Audio","Index":1,"IsExternal":false,"IsTextSubtitleStream":false,"SupportsExternalStream":false,"Protocol":"File","ExtendedVideoType":"None","ExtendedVideoSubType":"None","ExtendedVideoSubTypeDescription":"None","AttachmentSize":0}],"Formats":[],"Bitrate":37010555,"RequiredHttpHeaders":{},"AddApiKeyToDirectStreamUrl":false,"ReadAtNativeFramerate":false,"ItemId":"3613"}
+
+>>>>>>  User policy for yinhaoyu
+        Enable Playback Remuxing: True
+        Enable Video Playback Transcoding: True
+        Enable Audio Playback Transcoding: True
+
+>>>>>>  Selected Codecs
+Decoder Automatic software decoder
+
+
+Encoder x264
+        Max Bitrate: 781 Mbit/s
+        Color Formats: YUV420P, YUVJ420P, YUV422P, YUVJ422P, YUV444P, YUVJ444P, NV12, NV16, NV21, YUV420P10, YUV422P10, YUV444P10, NV20, GRAY8, GRAY10 - Bit Depths: 8, 10, 12, 14
+        Profiles: Baseline Profile (Level 6.2), Main Profile (Level 6.2), High Profile (Level 6.2), High 10 Profile (Level 6.2), High 4:2:2 Profile (Level 6.2), High 4:4:4 Predictive Profile (Level 6.2)
+
+
+>>>>>>  FindVideoEncoder - MediaType: h264, UseHardwareCodecs: True, HWA-Mode: Automatic
+Info    Checking: 'x264'
+Info    Check successful - selecting 'x264'
+
+>>>>>>  FindVideoDecoder - MediaType: h264, UseHardwareCodecs: True, HWA-Mode: Automatic
+Info    Checking: 'Automatic software decoder'
+Info    Check successful - selecting 'Automatic software decoder'
+
+>>>>>>  Processing Plan
+        Name                                        CanDoInHW  WillDoInHW  Reason                                                 
+        Automatic software decoder               >> False      False       Software Codec                                          
+        VideoInput                               >> False      False       Not a hardware decoder                                  
+        VideoOutput                              >> False      False       Not a hardware encoder                                  
+        x264                                     >> False      False       Software Codec                                          
+
+>>>>>>  Video Processing Steps for [0:0]: H.264 (AVC)
+        Step                    HW-Context   Format       SW-Format           Size   Next
+        H264                 >> -            yuv420p      yuv420p        3840x2160 >> 
+
+/Applications/EmbyServer.app/Contents/MacOS/ffmpeg -loglevel +timing -y -print_graphs_file "/Users/yinhaoyu/.config/emby-server/logs/ffmpeg-transcode-9f52dc5c-cc8a-4598-aa88-77963a76413d_1graph.txt" -copyts -start_at_zero -f mp4 -c:v:0 h264 -noautorotate -i "/Volumes/HDD/Videos/Girls/JAV_output/未知演员/V (4)/V (4).mp4" -map 0:0 -map 0:1 -sn -c:v:0 libx264 -g:v:0 90 -maxrate:v:0 36790061 -bufsize:v:0 73580122 -sc_threshold:v:0 0 -keyint_min:v:0 90 -r:v:0 30 -pix_fmt:v:0 yuv420p -preset:v:0 veryfast -profile:v:0 high -x264opts:v:0 "subme=0:me_range=4:rc_lookahead=10:partitions=none" -crf:v:0 23 -c:a:0 libmp3lame -ab:a:0 192000 -ac:a:0 2 -disposition:a:0 default -max_delay 5000000 -avoid_negative_ts disabled -f segment -map_metadata -1 -map_chapters -1 -segment_format mpegts -segment_list "/Users/yinhaoyu/.config/emby-server/transcoding-temp/A6A4F8/A6A4F8.m3u8" -segment_list_type m3u8 -segment_time 00:00:03.000 -segment_start_number 0 -individual_header_trailer 0 -write_header_trailer 0 -segment_write_temp 1 "/Users/yinhaoyu/.config/emby-server/transcoding-temp/A6A4F8/A6A4F8_%d.ts"
+
+20:58:06.924 ffmpeg version 5.1-emby_2023_06_25_p4 Copyright (c) 2000-2022 the FFmpeg developers and softworkz for Emby LLC
+20:58:06.925   built with clang version 18.1.8
+20:58:06.925 Execution Date: 2026-03-04 20:58:06
+20:58:06.926 /Volumes/HDD/Videos/Girls/JAV_output/未知演员/V (4)/V (4).mp4: No such file or directory
+20:58:06.927 EXIT
+
+======= ExtraData
+H4sIAAAAAAAAE8VY3W7bNhR+lUDAgBawI8l/sQ3kwrWXxmvSBnGaXQyFQEuUzFUUBZLy7BZ5iAG76MWA3Ww3u9gLbK+zbnuLHVKSJVtynP4MC5BEIs85PD8fPx7qrTFmlKLIM4ZvjTMSSszF1uM3r+4axtOQzVH4IpaERXo6fbxFYYKVzFvjOaLYGBpro2Ho0ZnkJApgRPIEG3eNjUQM49IJOIoXwvFJiCsa5ksBK5trEi0QWyfmscsinwQmpvN1E6aWmJshC4Tp+zTGQVNyFAmXebg58Lstz+26Tdfto2anO+g3Eer3mycng14bnfQ6dttzbL32sVzJslsui9dSHPReSMSlg6TzBnO2R1olbBrFiUwzM8E0WWGuk4qRTDjObFG2bNC406Ad1GgHMfy2GvTbFljN5G7WsZLLDTSM/QV4dZcvOo08vDKGVvZ6xZlkLgury2e5315rW+fgig9AhF/JEsScJglGMKJ5llQFa7K0aPU6FTdviYdZrnI4L2KUyI340EehwA3jEnsEPSMK+am9ew1t4kFgCvKDZBW42nAamjaYxqeMjWFlNzNwngakJfR4EeSXK4mhfJ6ey0J9ziK8OzVL5nJrdsxCxm/UPvBVhMZcnliDfPyKE4o4UWFsT8xi5OLSoLZ9jaJADc4m1zB0RVY4PGOcIpnGAWr5q7FOlp2WFSvvIshlBEMvIxFjl/gEe4bO/DQCGglhHW+T+CdEXqv0DY129+hyTqSp9h2MiivM9YLG0G7pkQmO5cIY9hvGNfbPOCQQgrDz9JI32ki/Y61ads8CIyPgBhRgLZmvYZm2ofRRWDM8Uu4qdwiDQbs3VHkA/OvNMTQuEYlg4AIvlVNGV6kAmiJEGY8XxN3EVOy6tOhlnILODaH4CRJqyDbtbls7OxUT7KMkhFQq4lADkNpypqbiHCMFrimNEeGlmQkRcYjWN0RqPzvPjjJYXUD5EqQrmAC0IcIwvEGB3gvKoMIRj1C4sfSCk4DAwA5YC1DqVzChsL907bo1Pg/8apNUg8m9sT9H4QWOArnIkNExDiGw3TsZWFbPvhdsn1Knc0yCBSgqfDaMr4mnVlCIrcNq26rgVA1V4LgDrloMl46Bas2n4gavpGIRlcO88tnkLIljxuVGa2e6OFBUj4B3OaJECtmu6dp79swHsN3h2QkWLieaswvBkZTIXVAcyRQR1t2dOsv3njUIuZWjZpR45KOPmhQv5ZNGmztgp5FK1R8fo9HYyATyjZq6PV6gKMIhmGhtXi7QmiWqKunDDCqqIVNQcMu2jwdHr3MWniEahzlHdjq2ZRVYsnfILQ9la99udD4fuUHER0J7fvTon9/f/f3bz48/L9Fl+St4DjoUVLdEbaQP8raWhnaLJCrlAdoYtLs7tS3XSDvxadku6OViXJBLXtyi9v85j/w/fABgecmVF+YtCxPgfPN8MjG1KWE+JTwU5lejWwcqBJ2x+f7HX//66Zf3f/zw5/fvzNujR53H6d/jtKkFlGm5tGO8rO/7BQ6UCxWmuTzY5RfXkNSE46esW+2wcQA+lO8tmUJIRFX8IReu/JIFGk2JaWyOeqPOWT/7d0zbSX/feo7uVSs+7tGQsMcqwu06yfQuFiV0rtO2rWGVNYB6yZJ4CQqdBUbAzA6EA6CrqmUtfKH6HScSf7BW7mKqrfK19674sFsURSvHw0AzFTtdS/+UV0dLRjwnwgG0BEtYvnqt9YhA81D36Pdc1HKgloQoih2KJfKQRBX5pr0r6i5QrD8j1Imqgy7dLh94Sd1ROngol++ZYwZE6krszVgCBDlVZ7I1tPQdZk9XEJL5au8lNNd6UBVjjgWu7j/YX2sfCbn9mYTVfhxZQD9ZllOesbimxCKZU3xqDSl2uGqfTztD7johY6+RQvOpbQ1j2D9EO30aKYIsfw7hVTi02hleP/LmHFQsDqxtwKx43bU6b9LLsvPEF4rCd2VP2t2+ZbdaW5vRdeQCMr9goXc/T7zGa/Vxiuou+z5XqxTQ3pqPycrxabXSeXOs87gPjPYBMNK4HSJa3Rb6yH4IHitFPNyUFtwyrwRlD1q7BORWwVOeB/qJmdDQq1JT1sioFBVn8yefUM4X3rE6EhXppN82n+pPkCrW/Ekl5l/XanNCEBUAAA==
+---
