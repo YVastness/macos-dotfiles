@@ -23,6 +23,8 @@ git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/home
 # 3. 替换 homebrew-cask (图形应用库)
 cd "$(brew --repo homebrew/cask)"
 git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask.git
+# 4. 更新 Homebrew 自身及软件列表
+brew update
 ```
 
 ## 安装配置文件
