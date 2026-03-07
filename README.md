@@ -3,7 +3,29 @@
 ## chezmoi 的工作原理
 <img width="754" height="560" alt="截屏2025-08-03 02 31 37" src="https://github.com/user-attachments/assets/3fddaabc-fde9-4c04-8a36-cfbc86ad253e" />
 
-## 安装
+## 安装 brew
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+## 更新 brew 国内源
+
+```bash
+# 1. 替换 Homebrew 主程序仓库
+cd "$(brew --repo)"
+git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git
+
+# 2. 替换 homebrew-core (核心公式库)
+cd "$(brew --repo homebrew/core)"
+git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git
+
+# 3. 替换 homebrew-cask (图形应用库)
+cd "$(brew --repo homebrew/cask)"
+git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask.git
+```
+
+## 安装配置文件
 
 ```bash
 brew install chezmoi
