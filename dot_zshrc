@@ -4,30 +4,89 @@
 #| |  | | | |    / /_ ___) |  _  |  _ <| |___  |_      _|
 #|_|  |_| |_|   /____|____/|_| |_|_| \_\\____|   |_||_|  
 
-export PATH="/opt/homebrew/bin:$PATH"
-# M1/M2/M3 芯片 (Intel 用户去掉最后的 /arm64)
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/arm64
-# 同时也设置 Git 克隆的加速环境变量 (关键！)
-export HOMEBREW_GIT_URL=https://mirrors.tuna.tsinghua.edu.cn/git/homebrew
+# ==============================================================================
+# 1. 基础环境与 Homebrew 镜像加速 (清华大学源)
+# ==============================================================================
 
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+# Homebrew 路径 (根据实际安装位置调整，M 系列芯片通常为 /opt/homebrew)
+export PATH="/opt/homebrew/bin:$PATH"
+
+# --- Homebrew 镜像配置 (加速下载与更新) ---
+# M1/M2/M3 芯片使用 arm64 镜像；Intel 芯片请去掉路径中的 /arm64
+export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/arm64"
+
+# 加速 Homebrew 核心仓库的 Git 克隆
+export HOMEBREW_GIT_URL="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew"
+
+# 可选：加速 Homebrew API 更新 (如果上面两个还不够快)
+export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-api"
+
+
+# ==============================================================================
+# 2. Python 环境管理 (pyenv)
+# ==============================================================================
+
+export PYENV_ROOT="$HOME/.pyenv"
+
+# 将 pyenv 加入 PATH (如果尚未存在)
+if command -v pyenv >/dev/null; then
+  export PATH="$PYENV_ROOT/bin:$PATH"
+fi
+
+# 初始化 pyenv (必须在 PATH 设置之后)
+eval "$(pyenv init -)"
+
+# 💡 建议：如果你打算用 uv 替代 pyenv 的安装功能，可以在这里添加 uv 的路径
+# export PATH="$HOME/.local/bin:$PATH" 
+
+
+# ==============================================================================
+# 3. 敏感信息与 API Keys
+# ==============================================================================
+# ⚠️ 注意：请勿将此文件上传到公开的 GitHub 仓库！
+
+export DASHSCOPE_API_KEY="sk-c8b69bce40fd4031ac83294aabb070cf"
+
+
+# ==============================================================================
+# 4. Docker CLI 自动补全 (Docker Desktop 生成)
+# ==============================================================================
+
 fpath=(/Users/yinhaoyu/.docker/completions $fpath)
 autoload -Uz compinit
-compinit
-# End of Docker CLI completions
+# 优化：仅当 .zcompdump 文件变化超过 24 小时才重新加载，加快 shell 启动速度
+compinit -C
 
-alias ls='eza --icons'
-alias l="ls -l"
-alias ll='ls -al'
-alias la='ls -a'
-alias lt='ls --tree'
-alias ld='lazydocker'
-alias lg='lazygit'
-alias ya='yazi'
-alias ch='chezmoi'
-alias cat='bat'
-alias vi='nvim'
-alias cd='z'
 
+# ==============================================================================
+# 5. 常用别名 (Aliases) - 提升效率
+# ==============================================================================
+
+# --- 列表增强 (依赖 eza) ---
+alias ls='eza --icons'      # 带图标的列表
+alias l='ls -l'             # 长列表
+alias ll='ls -al'           # 长列表 + 隐藏文件
+alias la='ls -a'            # 所有文件
+alias lt='ls --tree'        # 树状结构
+
+# --- 快捷工具 ---
+alias ld='lazydocker'       # Docker TUI
+alias lg='lazygit'          # Git TUI
+alias ya='yazi'             # 终端文件管理器 (修正了原拼写 yazi -> yazi)
+alias ch='chezmoi'          # 点文件管理工具
+
+# --- 编辑器替换 ---
+alias cat='bat'             # 带语法高亮的 cat
+alias vi='nvim'             # 默认使用 Neovim
+alias cd='z'                # 使用 zoxide 智能跳转目录
+
+
+# ==============================================================================
+# 6. AI 与效率工具初始化
+# ==============================================================================
+
+# Starship 提示符 (跨 Shell 的高颜值提示符)
 eval "$(starship init zsh)"
+
+# Zoxide 初始化 (智能目录跳转，需在 alias cd='z' 之前或之后均可，但通常建议放在最后)
 eval "$(zoxide init zsh)"

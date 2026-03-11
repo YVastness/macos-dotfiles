@@ -1,0 +1,204 @@
+" =============================================================================
+"  _    _ ____  _   _ _____ ____   ___  _     _     ___ _   _ _____ ____
+" | |  | |  _ \| \ | | ____|  _ \ / _ \| |   | |   |_ _| \ | | ____|  _ \
+" | |  | | |_) |  \| |  _| | |_) | | | | |   | |    | ||  \| |  _| | |_) |
+" | |__| |  __/| |\  | |___|  _ <| |_| | |___| |___ | || |\  | |___|  _ <
+"  \____/|_|   |_| \_|_____|_| \_\\___/|_____|_____|___|_| \_|_____|_| \_\
+" IdeaVim Configuration File
+" =============================================================================
+
+" ==================================================
+" 1. 基础设置 (Basic Settings)
+" ==================================================
+" 设置 Leader 键为空格
+let mapleader=" "
+
+" 通用 Vim 设置
+set showmode          " 显示模式
+set so=5              " 侧边滚动偏移
+set incsearch         " 增量搜索
+set nu                " 显示行号
+set scrolloff=3       " 光标上下留白
+set history=100000    " 历史记录长度
+set clipboard=unnamed " 使用系统剪贴板
+
+" IdeaVim 特有设置
+set ideajoin          " 启用 IDEA 智能 Join 行
+set ideastatusicon=gray " 状态栏图标颜色
+set idearefactormode=keep " 重构时保持模式
+
+" ==================================================
+" 2. 插件管理 (Plugins)
+" 注意：确保已在 IDEA 设置中安装了对应的 Vim 插件
+" ==================================================
+set surround          " vim-surround: 快速包裹标签/引号
+set multiple-cursors  " vim-multiple-cursors: 多光标编辑
+set commentary        " vim-commentary: 注释代码 (gcc, gcap)
+set argtextobj        " 参数文本对象
+set easymotion        " EasyMotion: 增强跳转
+set textobj-entire    " 全文本对象
+set ReplaceWithRegister " 用寄存器内容替换
+set exchange          " vim-exchange: 交换文本 (cx)
+set highlightedyank   " 高亮复制内容
+" set NERDTree        " 注意：IDEA 中通常使用 Project 视图，NERDTree 可能冲突或不需要
+
+" 插件特定配置
+let g:argtextobj_pairs="[:],(:),<:>"
+let g:multi_cursor_start_key = 'gk'
+
+" ==================================================
+" 3. IdeaVim 与 IDE 快捷键集成 (IDE Actions)
+" 说明：直接使用 <Action>(ID) 映射，无需 sethandler
+" ==================================================
+
+" --- 核心开发流 ---
+map <leader>d <Action>(Debug)                  " 调试
+map <leader>r <Action>(RenameElement)          " 重命名元素
+map <leader>c <Action>(Stop)                   " 停止
+map <leader>z <Action>(ToggleDistractionFreeMode) " 免打扰模式
+map <leader>b <Action>(ToggleLineBreakpoint)   " 切换断点
+map <leader>o <Action>(FileStructurePopup)     " 文件结构弹窗
+map <leader>s <Action>(SelectInProjectView)    " 在项目视图中选中
+map <leader>a <Action>(Annotate)               " 注解 (Git Blame)
+map <leader>h <Action>(Vcs.ShowTabbedFileHistory) " 文件历史
+
+" --- 导航与搜索 ---
+map <S-Space> <Action>(GotoNextError)          " 下一个错误
+nnoremap <leader>se :action SearchEverywhere<CR> " 全局搜索 (Double Shift)
+nnoremap <leader>fu :action FindUsages<CR>     " 查找用法
+nnoremap <leader>su :action ShowUsages<CR>     " 显示用法
+nnoremap <leader>gs :action GotoSymbol<CR>     " 跳转到符号
+nnoremap <leader>fp :action ShowFilePath<CR>   " 显示文件路径
+nnoremap gf :action GotoFile<CR>               " 跳转到文件
+nnoremap ga :action GotoAction<CR>             " 跳转到 Action
+nnoremap gi :action GotoImplementation<CR>     " 跳转到实现
+nnoremap gt :action GotoTest<CR>               " 跳转到测试
+nnoremap [[ :action MethodUp<CR>               " 上一个方法
+nnoremap ]] :action MethodDown<CR>             " 下一个方法
+nnoremap g; <Action>(JumpToLastChange)         " 上次编辑位置
+nnoremap g, <Action>(JumpToNextChange)         " 下次编辑位置
+
+" --- 运行与构建 ---
+nnoremap zd :action Debug<CR>                  " 快捷调试 (zd)
+nnoremap zr :action Run<CR>                    " 快捷运行 (zr)
+nnoremap <leader>rc :action ChooseRunConfiguration<CR> " 选择运行配置
+nnoremap <leader>rr :action Run<CR>            " 运行
+nnoremap <leader>rd :action Debug<CR>          " 调试
+nnoremap <leader>cd :action ChooseDebugConfiguration<CR> " 选择调试配置
+nnoremap <leader>ss :action SingleFileExecutionAction<CR> " 单文件执行
+nnoremap <leader>cc :action CPP.NewCppFile<CR> " 新建 C++ 文件
+nnoremap <leader>jj :action NewClass<CR>       " 新建类
+
+" --- 重构与工具 ---
+nnoremap <leader>rn :action RenameElement<CR>  " 重命名
+nnoremap <leader>rf :action RenameFile<CR>     " 重命名文件
+nnoremap <leader>gg :action Generate<CR>       " 生成代码 (Get/Set)
+nnoremap <leader>oi :action OptimizeImports<CR> " 优化导入
+nnoremap <leader>ic :action InspectCode<CR>    " 代码检查
+nnoremap <leader>lg :action ActivateVersionControlToolWindow<CR> " Git 窗口
+nnoremap <leader>tc :action CloseActiveTab<CR> " 关闭标签
+nnoremap <A-j> :action HideActiveWindow<CR>    " 隐藏活动窗口
+
+" --- 终端与其他 ---
+" 注意：这里修正了原来的 tl 映射逻辑，统一行为
+nnoremap <leader>tl :action ActivateTerminalToolWindow<CR>
+vnoremap <leader>tl y<CR>:action ActivateTerminalToolWindow<CR>
+nnoremap <leader>m :action SelectIn<CR>        " Select In (Alt+F1)
+nnoremap <leader>e :action RecentFiles<CR>     " 最近文件 (Ctrl+E)
+nnoremap <leader>pm :action ShowPopupMenu<CR>  " 上下文菜单
+nnoremap <leader>cv :action ChangeView<CR>     " 改变视图
+
+" --- 错误导航 ---
+nnoremap + :action GotoNextError<CR>
+nnoremap - :action GotoPreviousError<CR>
+nnoremap [g :action VcsShowNextChangeMarker<CR>
+nnoremap ]g :action VcsShowPrevChangeMarker<CR>
+
+" --- 搜索覆盖 ---
+" 将 / 映射为 IDEA 的查找框 (更好用)，如需 Vim 原生搜索用 <leader>/
+nnoremap / :action Find<CR>
+nnoremap <leader>/ /
+
+" ==================================================
+" 4. 自定义快捷键与映射 (Custom Mappings)
+" ==================================================
+
+" --- EasyMotion ---
+map <leader><leader>s <Plug>(easymotion-s)
+map <leader>f <Plug>(easymotion-f)
+
+" --- 常用操作简化 ---
+nnoremap <leader>w :w<CR>                      " 保存
+nnoremap <leader>q :q<CR>                      " 关闭当前
+nnoremap <leader>Q :qa!<CR>                    " 强制退出所有
+nnoremap <leader>sc :nohlsearch<CR>            " 清除搜索高亮
+nnoremap tt :NERDTree<CR>                      " 打开 NERDTree (如果启用)
+
+" --- 翻页优化 ---
+nnoremap <leader>d <C-d>                       " 下半页
+nnoremap <leader>u <C-u>                       " 上半页
+nnoremap <leader>h <S-h>zz                     " 向上翻屏并居中
+nnoremap <leader>l <S-l>zz                     " 向下翻屏并居中
+
+" --- 插入模式下的 Emacs 风格快捷键 ---
+inoremap <C-b> <Left>
+inoremap <C-n> <Down>
+inoremap <C-p> <Up>
+inoremap <C-f> <Right>
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+
+" --- 快速退出模式 ---
+inoremap jj <Esc>
+inoremap jk <Esc>
+inoremap kk <Esc>
+vnoremap v <Esc>                               " 可视模式下按 v 退出
+
+" --- 重做 ---
+nnoremap U <C-r>                               " 重做 (默认 U 是撤销行，改为 Ctrl+R)
+
+" --- 高级文本操作 (寄存器与标记) ---
+" 复制单词到寄存器 a 并标记
+nnoremap <leader>y mo"+yiw"ayiw
+" 剪切单词到寄存器 a 并标记
+nnoremap <leader>x mo"+yiw"ayiwdiw
+" 替换单词并跳回标记
+nnoremap <leader>v mpviw"ap'o'p
+
+" ==================================================
+" 5. 窗口与标签页操作 (Window & Tabs)
+" ==================================================
+
+" --- 窗口分割与导航 ---
+nnoremap <leader>ww <C-W>w                     " 切换窗口
+nnoremap <leader>wd <C-W>c                     " 关闭窗口
+nnoremap <leader>wj <C-W>j                     " 下窗口
+nnoremap <leader>wk <C-W>k                     " 上窗口
+nnoremap <leader>wh <C-W>h                     " 左窗口
+nnoremap <leader>wl <C-W>l                     " 右窗口
+nnoremap <leader>ws <C-W>s                     " 上下分割
+nnoremap <leader>w- <C-W>s                     " 上下分割 (别名)
+nnoremap <leader>wv <C-W>v                     " 左右分割
+nnoremap <leader>w\| <C-W>v                    " 左右分割 (别名)
+
+" --- 标签页切换 ---
+nnoremap <C-j> gT                              " 上一个标签
+nnoremap <C-k> gt                              " 下一个标签
+
+" ==================================================
+" 6. 备注与文档 (Documentation)
+" ==================================================
+" gcc      : 注释一行
+" gcap     : 注释一段
+" gc + 运动 : 注释范围
+" cx       : 交换两个文本块
+" cxx      : 交换两行
+" {Visual}X: 可视模式下交换
+" qr       : 录制宏到寄存器 r
+" @r       : 播放宏
+" 10@r     : 播放宏 10 次
+"
+" 替换命令:
+" :s/old/new/g       : 当前行替换
+" :%s/old/new/gc     : 全文替换并确认
+" :%g/pattern/normal : 匹配模式执行命令
