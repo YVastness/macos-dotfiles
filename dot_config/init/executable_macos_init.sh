@@ -45,7 +45,7 @@ cli_tools=(
   neovim lazygit chezmoi git zoxide superfile
   exiftool lazyssh git-delta yazi ffmpeg sevenzip jq
   poppler fd ripgrep fzf zoxide resvg imagemagick uv
-  pyenv htop tldr tree wget curl mas
+  pyenv htop tldr tree wget curl ast-grep go rust php mas
 )
 
 for tool in "${cli_tools[@]}"; do
@@ -113,7 +113,7 @@ else
   # 示例: Infuse, Final Cut Pro, Logic Pro, Pages, Numbers, Keynote, Affinity Photo 等
   # 格式: "应用名称:AppID"
   declare -A mas_apps
-  mas_apps["Infuse"]="1161688597" # Infuse 视频播放器
+  # mas_apps["Infuse"]="1161688597" # Infuse 视频播放器
   # mas_apps["Pages"]="pages"             # 这里的 ID 可以用名字代替，mas 会自动搜索，但推荐用数字 ID 更稳
   # 下面演示用数字 ID (您需要确认自己是否购买过这些软件，否则会安装失败或提示购买)
   # mas_apps["Final Cut Pro"]="424389933"
